@@ -28,12 +28,28 @@ const Swing = () => {
     }
   ];
 
-  const sampleTrades = [
-    { date: "15 Jul 2025", symbol: "NIFTY 19700 CE", entry: "₹85", target: "₹120", exit: "₹118", result: "Profit" },
-    { date: "12 Jul 2025", symbol: "BANKNIFTY 46500 PE", entry: "₹92", target: "₹140", exit: "₹142", result: "Profit" },
-    { date: "08 Jul 2025", symbol: "RELIANCE FUT", entry: "₹2840", target: "₹2900", exit: "₹2895", result: "Profit" },
-    { date: "05 Jul 2025", symbol: "HDFCBANK 1650 CE", entry: "₹45", target: "₹65", exit: "₹42", result: "Stoploss" }
+  const plans = [
+    {
+      period: '1 Month',
+      originalPrice: '₹8000',
+      discountedPrice: '₹3599',
+      discount: '55% Off'
+    },
+    {
+      period: '6 Months',
+      originalPrice: '₹45000',
+      discountedPrice: '₹9999',
+      discount: '79% Off'
+    },
+    {
+      period: '1 Year',
+      originalPrice: '₹86000',
+      discountedPrice: '₹15,000',
+      discount: '84% Off'
+    }
   ];
+
+  const purchaseLink = "https://rpy.club/g/CnQde16U8Y";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -101,67 +117,22 @@ const Swing = () => {
         </div>
       </section>
 
-      {/* Performance Section */}
+      {/* Pricing */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Recent Trade Performance</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
-              <thead className="bg-blue-600 text-white">
-                <tr>
-                  <th className="py-3 px-4 text-left">Date</th>
-                  <th className="py-3 px-4 text-left">Symbol</th>
-                  <th className="py-3 px-4 text-left">Entry</th>
-                  <th className="py-3 px-4 text-left">Target</th>
-                  <th className="py-3 px-4 text-left">Exit</th>
-                  <th className="py-3 px-4 text-left">Result</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {sampleTrades.map((trade, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
-                    <td className="py-3 px-4">{trade.date}</td>
-                    <td className="py-3 px-4 font-medium">{trade.symbol}</td>
-                    <td className="py-3 px-4">{trade.entry}</td>
-                    <td className="py-3 px-4">{trade.target}</td>
-                    <td className="py-3 px-4">{trade.exit}</td>
-                    <td className={`py-3 px-4 font-semibold ${trade.result === "Profit" ? 'text-green-600' : 'text-red-600'}`}>
-                      {trade.result}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-6 text-gray-500 text-sm text-center">
-            *Past performance is not indicative of future results. Trading involves risk of capital.
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Pricing Plans</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="max-w-4xl mx-auto">
             <PricingCard 
-              title="Basic Swing"
-              price="₹8,000"
-              period="month"
-              features={["2 trades per week", "Entry/Exit alerts", "Weekly report", "Email support"]}
-            />
-            <PricingCard 
-              title="Premium Swing"
-              price="₹12,000"
-              period="month"
-              features={["3-4 trades per week", "Priority alerts", "Detailed analysis", "WhatsApp support"]}
-              popular={true}
-            />
-            <PricingCard 
-              title="Quarterly Plan"
-              price="₹30,000"
-              period="3 months"
-              features={["All Premium features", "Save ₹6,000", "Personal mentor", "24/7 support"]}
+              title="Options Swing"
+              description="Options swing trading for job/business professionals"
+              features={[
+                "Stock & Index Options",
+                "Trade Management Guidance",
+                "WhatsApp & Telegram Updates"
+              ]}
+              plans={plans}
+              popularIndex={1}
+              purchaseLink={purchaseLink}
             />
           </div>
         </div>
@@ -174,7 +145,10 @@ const Swing = () => {
           <p className="text-xl mb-8">
             Join hundreds of successful traders who balance their jobs with profitable trading.
           </p>
-          <button className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.location.href = purchaseLink}
+          >
             Subscribe Now
           </button>
         </div>

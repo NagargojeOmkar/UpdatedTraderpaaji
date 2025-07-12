@@ -1,6 +1,7 @@
 // src/pages/Combo.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import PricingCard from '../components/ui/PricingCard';
 import { FaStar, FaChartLine, FaMobileAlt, FaHeadset } from 'react-icons/fa';
 
 const Combo = () => {
@@ -33,6 +34,29 @@ const Combo = () => {
     { name: "Equity Premium", description: "Long-term fundamentally strong stock picks" },
     { name: "Personal Mentor", description: "One-on-one guidance sessions" }
   ];
+
+  const plans = [
+    {
+      period: '1 Month',
+      originalPrice: '₹20000',
+      discountedPrice: '₹4999',
+      discount: '75% Off'
+    },
+    {
+      period: '3 Months',
+      originalPrice: '₹60000',
+      discountedPrice: '₹9999',
+      discount: '83% Off'
+    },
+    {
+      period: '1 Year',
+      originalPrice: '₹240000',
+      discountedPrice: '₹34,999',
+      discount: '84% Off'
+    }
+  ];
+
+  const purchaseLink = "https://traderpaaji.rpy.club/g/aGHwL3ODHr";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -134,35 +158,18 @@ const Combo = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Combo Pricing</h2>
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-xl shadow-2xl">
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">All-In-One Combo Package</h3>
-                  <p className="text-blue-100">Complete access to all services</p>
-                </div>
-                <div className="mt-6 md:mt-0 text-center">
-                  <div className="text-4xl font-bold">₹35,000 <span className="text-lg">/ month</span></div>
-                  <div className="text-yellow-400 font-semibold mt-2">Save ₹12,000 compared to individual plans</div>
-                </div>
-              </div>
-              
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-blue-700/50 p-4 rounded-lg">
-                  <h4 className="font-bold mb-2 text-white">Quarterly Plan</h4>
-                  <p className="text-2xl font-bold text-white">₹95,000</p>
-                  <p className="text-green-400">Save ₹10,000</p>
-                </div>
-                <div className="bg-blue-700/50 p-4 rounded-lg">
-                  <h4 className="font-bold mb-2 text-white">Annual Plan</h4>
-                  <p className="text-2xl font-bold text-white">₹3,50,000</p>
-                  <p className="text-green-400">Save ₹70,000</p>
-                </div>
-              </div>
-              
-              <button className="w-full mt-8 bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 rounded-md shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                Get Full Access Now
-              </button>
-            </div>
+            <PricingCard 
+              title="All-In-One Combo"
+              description="Complete package for all trading styles"
+              features={[
+                "Index Option Intraday",
+                "Stock Option Swing",
+                "Equity Cash Swing"
+              ]}
+              plans={plans}
+              popularIndex={1}
+              purchaseLink={purchaseLink}
+            />
           </div>
         </div>
       </section>
@@ -174,7 +181,10 @@ const Combo = () => {
           <p className="text-xl mb-8">
             Join our premium combo package and get access to all our research services.
           </p>
-          <button className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.location.href = purchaseLink}
+          >
             Subscribe Now
           </button>
         </div>

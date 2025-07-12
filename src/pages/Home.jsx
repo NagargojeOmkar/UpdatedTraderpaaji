@@ -1,496 +1,239 @@
 // src/pages/Home.jsx
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaChartLine, FaBullseye, FaBrain, FaArrowRight, FaQuoteLeft, FaWhatsapp } from 'react-icons/fa';
+import PricingSection from '../components/sections/PricingSection';
+import { FaArrowRight, FaWhatsapp, FaChartLine, FaBullseye, FaBrain } from 'react-icons/fa';
+
+// Import assets
+import raPhoto from '../assets/traderpaaji.png';
 
 const Home = () => {
-  // Testimonial state for carousel
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  
-  // Services data
-  const services = [
-    {
-      title: 'Intraday Premium',
-      description: 'Daily 2-3 high probability intraday stock and options calls with live support.',
-      points: ['Nifty & BankNifty Options', 'Entry, Target, Stoploss', 'WhatsApp & Telegram Updates'],
-      price: '₹15,000 / month',
-      path: '/intraday',
-      icon: <FaChartLine className="text-blue-600 text-2xl" />,
-      badge: "Most Popular",
-    },
-    {
-      title: 'Options Swing',
-      description: 'Swing trades in options and futures for job holders with less screen time.',
-      points: ['2-3 Trades per week', 'Holding period 1-3 days', 'WhatsApp & Telegram Updates'],
-      price: '₹12,000 / month',
-      path: '/swing',
-      icon: <FaBullseye className="text-blue-600 text-2xl" />,
-    },
-    {
-      title: 'Equity Premium',
-      description: 'Long term equity investments with high growth potential and strong fundamentals.',
-      points: ['Thorough Research Reports', 'Entry, Target, Stoploss', 'Quarterly Updates'],
-      price: '₹10,000 / month',
-      path: '/equity',
-      icon: <FaChartLine className="text-blue-600 text-2xl" />,
-    },
-    {
-      title: 'All-In-One Combo',
-      description: 'Get all three services at a discounted price.',
-      points: ['Intraday Premium', 'Options Swing', 'Equity Premium'],
-      price: '₹30,000 / month',
-      discount: 'Save ₹7,000',
-      path: '/combo',
-      icon: <FaBrain className="text-blue-600 text-2xl" />,
-      badge: "Best Value",
-    },
-  ];
-
-  // Testimonials data
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Rahul Sharma',
-      role: 'Professional Trader',
-      content: 'TraderPaaji\'s intraday calls have transformed my trading. I\'ve consistently made profits for the last 6 months with his precise entry and exit strategies.',
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: 'Priya Singh',
-      role: 'Equity Investor',
-      content: 'The fundamental research provided in the Equity Premium service is exceptional. I\'ve gained over 40% returns in my portfolio in the last year.',
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: 'Vikram Mehta',
-      role: 'Job Holder Trader',
-      content: 'As someone with a full-time job, the Options Swing service has been perfect for me. I get quality trades without needing to watch the market all day.',
-      rating: 4,
-    },
-    {
-      id: 4,
-      name: 'Sanjay Patel',
-      role: 'Combo Subscriber',
-      content: 'The combo package is worth every rupee. It gives me comprehensive market coverage across all timeframes with expert guidance.',
-      rating: 5,
-    },
-  ];
-
-  // FAQ data
-  const faqs = [
-    {
-      question: 'How do I subscribe to a service?',
-      answer: 'You can subscribe by clicking the "Buy Now" button on the respective service page and making the payment. We accept all major payment methods including UPI, Net Banking, and Credit/Debit Cards.',
-    },
-    {
-      question: 'Is there a refund policy?',
-      answer: 'We offer a 3-day refund policy if you are not satisfied with the service. However, after 3 days, no refunds will be processed. Please review our terms and conditions for more details.',
-    },
-    {
-      question: 'What is the performance track record?',
-      answer: 'We maintain a transparent track record of all our calls. You can check the performance on our disclosure page which is updated monthly as per SEBI regulations.',
-    },
-    {
-      question: 'Do you provide training?',
-      answer: 'Yes, we conduct regular training sessions. Please contact us for personalized training programs tailored to your needs.',
-    },
-    {
-      question: 'How can I contact support?',
-      answer: 'You can reach us via WhatsApp (+91 9876543210), email (support@traderpaaji.com), or through the contact form on our website. We typically respond within 24 hours on business days.',
-    },
-    {
-      question: 'Are your services suitable for beginners?',
-      answer: 'Absolutely! We provide guidance for traders at all levels. For beginners, we recommend starting with our educational content before subscribing to our premium services.',
-    },
-  ];
-
-  // Function to handle testimonial navigation
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50 relative">
-      {/* Floating WhatsApp Button */}
+    <div className="min-h-screen bg-gray-50 relative overflow-x-hidden">
+      {/* Floating WhatsApp Button - Responsive */}
       <a 
         href="https://wa.me/919876543210" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 z-50"
+        className="fixed z-50 flex items-center justify-center p-3 transition-all duration-300 bg-green-500 rounded-full shadow-lg bottom-4 right-4 md:bottom-6 md:right-6 hover:bg-green-600 group md:p-4"
       >
-        <FaWhatsapp className="text-2xl" />
+        <FaWhatsapp className="text-xl md:text-2xl" />
+        <span className="absolute px-2 py-1 text-xs text-white transition-all duration-300 bg-green-600 rounded opacity-0 top-0 -translate-y-full whitespace-nowrap group-hover:opacity-100">
+          Chat with us
+        </span>
       </a>
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row items-center">
+      {/* Hero Section - Better Aligned Badges */}
+      <section className="relative px-4 py-12 overflow-hidden bg-gradient-to-b from-white to-blue-50 sm:px-6 lg:px-8 md:py-24">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+          <div className="absolute w-48 h-48 bg-blue-400 rounded-full -top-12 -right-12 md:w-64 md:h-64 md:-top-20 md:-right-20 filter blur-3xl"></div>
+          <div className="absolute w-48 h-48 bg-yellow-400 rounded-full bottom-6 left-6 md:w-64 md:h-64 md:bottom-10 md:left-10 filter blur-3xl"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center lg:flex-row">
+            {/* Content Column */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
+              transition={{ duration: 0.6 }}
+              className="w-full text-center lg:w-1/2 lg:text-left"
             >
+              {/* SEBI badge */}
               <motion.div 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-4"
+                className="inline-flex items-center px-3 py-1.5 mb-5 text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-full shadow md:px-4 md:py-2 md:text-sm"
               >
-                SEBI Registered: INH000014845
+                <svg className="w-3 h-3 mr-1 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                </svg>
+                SEBI Registered Research Analyst: INH000014845
               </motion.div>
               
               <motion.h1 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight"
+                transition={{ delay: 0.3 }}
+                className="mb-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl"
               >
-                Transforming Trading with <span className="text-blue-600">Expertise</span> and Insight
+                Master the Markets with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">TraderPaaji</span>
               </motion.h1>
               
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="text-lg text-gray-600 mb-6 max-w-2xl"
+                transition={{ delay: 0.4 }}
+                className="mb-5 text-base text-gray-600 md:text-lg max-w-2xl mx-auto lg:mx-0"
               >
-                TraderPaaji, SEBI-Registered Research Analyst with over 8 years of experience in options and swing trading.
+                SEBI-Registered Research Analyst with 8+ years expertise in options & swing trading.
               </motion.p>
               
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="mb-6 bg-blue-100 p-4 rounded-lg inline-block"
+                transition={{ delay: 0.5 }}
+                className="inline-block p-3 mb-6 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl border border-blue-200 shadow-sm md:p-4"
               >
-                <p className="text-blue-800 font-semibold text-xl">
-                  <span className="text-2xl">3,000+</span> traders trained, <span className="text-2xl">120+</span> happy premium clients
+                <p className="font-semibold text-blue-800 text-base md:text-lg">
+                  <span className="font-bold text-xl md:text-2xl">3,000+</span> traders trained • <span className="font-bold text-xl md:text-2xl">1100+</span> Happy clients
                 </p>
               </motion.div>
               
               <motion.ul
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="mb-8 space-y-3 max-w-xl"
+                transition={{ delay: 0.6 }}
+                className="mb-6 space-y-3 max-w-xl mx-auto lg:mb-8 lg:mx-0"
               >
-                <li className="flex items-center text-gray-800">
-                  <span className="text-green-500 mr-2 text-xl">✓</span> 
-                  <span className="text-lg">Live Market Support & Guidance</span>
+                <li className="flex items-center p-3 text-gray-800 bg-gradient-to-r from-white to-blue-50 rounded-lg border border-gray-100 shadow-sm md:p-4">
+                  <span className="flex items-center justify-center w-7 h-7 mr-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full md:w-8 md:h-8">
+                    <FaChartLine className="text-blue-600 text-sm md:text-base" />
+                  </span>
+                  <span className="text-base font-medium md:text-lg">Live Market Support & Guidance</span>
                 </li>
-                <li className="flex items-center text-gray-800">
-                  <span className="text-green-500 mr-2 text-xl">✓</span> 
-                  <span className="text-lg">Intraday & Swing Trading Insights</span>
+                <li className="flex items-center p-3 text-gray-800 bg-gradient-to-r from-white to-blue-50 rounded-lg border border-gray-100 shadow-sm md:p-4">
+                  <span className="flex items-center justify-center w-7 h-7 mr-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full md:w-8 md:h-8">
+                    <FaBullseye className="text-blue-600 text-sm md:text-base" />
+                  </span>
+                  <span className="text-base font-medium md:text-lg">Intraday & Swing Trading Insights</span>
                 </li>
-                <li className="flex items-center text-gray-800">
-                  <span className="text-green-500 mr-2 text-xl">✓</span> 
-                  <span className="text-lg">Trading Psychology & Risk Management</span>
+                <li className="flex items-center p-3 text-gray-800 bg-gradient-to-r from-white to-blue-50 rounded-lg border border-gray-100 shadow-sm md:p-4">
+                  <span className="flex items-center justify-center w-7 h-7 mr-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full md:w-8 md:h-8">
+                    <FaBrain className="text-blue-600 text-sm md:text-base" />
+                  </span>
+                  <span className="text-base font-medium md:text-lg">Trading Psychology & Risk Management</span>
                 </li>
               </motion.ul>
               
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-                className="flex flex-col sm:flex-row gap-4"
+                transition={{ delay: 0.7 }}
+                className="flex justify-center lg:justify-start"
               >
                 <Link
                   to="/contact"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:scale-105 shadow-md flex items-center justify-center"
+                  className="flex items-center justify-center px-5 py-3 text-base font-bold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-900 transform hover:scale-105 md:px-6 md:py-3.5 md:text-lg"
                 >
-                  Join me and start trading smarter!
-                  <FaArrowRight className="ml-2" />
+                  Start Your Trading Journey
+                  <FaArrowRight className="ml-2 text-sm md:text-base" />
                 </Link>
               </motion.div>
             </motion.div>
             
+            {/* Photo Column - Better Aligned Badges */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="md:w-1/2 flex justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative flex justify-center w-full mt-10 lg:mt-0 lg:w-1/2"
             >
-              <div className="relative">
-                <div className="bg-gray-200 border-2 border-dashed rounded-xl w-64 h-64 md:w-80 md:h-80" />
-                <div className="absolute -bottom-4 -right-4 bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg">
-                  SEBI Registered
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                {/* RA Photo */}
+                <div className="relative overflow-hidden border-4 border-white rounded-2xl shadow-xl md:border-6 lg:border-8">
+                  <img 
+                    src={raPhoto} 
+                    alt="TraderPaaji - SEBI Registered Research Analyst" 
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute inset-0 border-2 border-white/20 rounded-xl pointer-events-none"></div>
                 </div>
-                <div className="absolute -top-6 -left-6 bg-blue-600 text-white font-bold py-3 px-6 rounded-full">
-                  8+ Years Experience
-                </div>
+                
+                {/* Credentials badges - Improved Alignment */}
+                <motion.div 
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg shadow md:px-5 md:py-2.5 md:text-sm lg:translate-y-3/4 lg:px-6 lg:py-3"
+                >
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 mr-1 md:w-4 md:h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                    </svg>
+                    SEBI Registered
+                  </div>
+                </motion.div>
+                <motion.div 
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="absolute top-0 left-0 px-4 py-2 text-xs font-bold text-white transform -translate-x-1/4 -translate-y-1/4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full shadow md:py-3 md:px-6 md:text-sm lg:px-7 lg:py-4"
+                >
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 mr-1 md:w-4 md:h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                    </svg>
+                    8+ Years Experience
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6 text-center relative text-gray-900"
-          >
-            Our Premium Services
-            <div className="w-20 h-1 bg-green-500 mx-auto mt-3"></div>
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-gray-600 text-center mb-12 max-w-3xl mx-auto"
-          >
-            Choose from our research services designed to cater to different trading styles and preferences
-          </motion.p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-xl hover:border-yellow-500 transition-all duration-300"
-              >
-                {service.badge && (
-                  <span className="bg-blue-600 text-white font-bold py-1 px-3 rounded-full text-sm absolute top-4 right-4">
-                    {service.badge}
-                  </span>
-                )}
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <div className="flex items-center mb-2">
-                        {service.icon}
-                        <h3 className="text-xl font-bold ml-3 text-gray-900">{service.title}</h3>
-                      </div>
-                      <p className="text-gray-600 text-sm">{service.description}</p>
-                    </div>
-                  </div>
-                  
-                  <ul className="mb-4 space-y-2">
-                    {service.points.map((point, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="text-green-500 mr-2">✓</span>
-                        <span className="text-gray-800">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="mt-6 flex justify-between items-center">
-                    <div>
-                      <span className="text-xl font-bold text-blue-600">{service.price}</span>
-                      {service.discount && (
-                        <span className="ml-2 text-green-500 font-semibold text-sm">{service.discount}</span>
-                      )}
-                    </div>
-                    <Link
-                      to={service.path}
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-all"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <Link to="/combo" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-bold">
-              View All Services <FaArrowRight className="ml-2" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      {/* Pricing Section */}
+      <PricingSection />
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+      <section className="px-4 py-12 text-white bg-gradient-to-r from-blue-600 to-blue-800 sm:px-6 lg:px-8 md:py-20" id="results">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10 text-center md:mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-3 text-2xl font-bold md:text-3xl"
+            >
+              Proven Track Record
+            </motion.h2>
+            <motion.div 
+              initial={{ opacity: 0, width: 0 }}
+              whileInView={{ opacity: 1, width: "60px" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="h-1 mx-auto bg-yellow-400 md:w-20"
+            ></motion.div>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-8">
             {[
-              { value: "8+", label: "Years Experience" },
-              { value: "3,000+", label: "Traders Trained" },
-              { value: "120+", label: "Happy Clients" },
+              { 
+                value: "8+", 
+                label: "Years Experience",
+                description: "Market analysis since 2015",
+                icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              },
+              { 
+                value: "3,000+", 
+                label: "Traders Trained",
+                description: "Workshops & mentorship",
+                icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+              },
+              { 
+                value: "1100+", 
+                label: "Happy Clients",
+                description: "Premium programs",
+                icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              },
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="p-5 border rounded-xl border-blue-500/30 bg-blue-700/20 backdrop-blur-sm md:p-6"
               >
-                <div className="text-4xl md:text-5xl font-bold text-yellow-400 mb-2">{stat.value}</div>
-                <div className="text-white text-lg">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6 text-center relative text-gray-900"
-          >
-            What Our Clients Say
-            <div className="w-20 h-1 bg-green-500 mx-auto mt-3"></div>
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-gray-600 text-center mb-12 max-w-3xl mx-auto"
-          >
-            Don't just take our word for it. Here's what our satisfied clients have to say about our services.
-          </motion.p>
-          
-          <div className="max-w-4xl mx-auto relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-xl shadow-lg"
-              >
-                <div className="flex items-start mb-6">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-full w-16 h-16" />
-                  <div className="ml-4">
-                    <h3 className="text-xl font-bold text-gray-900">{testimonials[currentTestimonial].name}</h3>
-                    <p className="text-blue-600">{testimonials[currentTestimonial].role}</p>
-                  </div>
+                <div className="flex justify-center mb-3 text-yellow-400 md:mb-4">
+                  {stat.icon}
                 </div>
-                
-                <div className="relative">
-                  <FaQuoteLeft className="absolute top-0 left-0 text-gray-300 text-4xl -mt-2 -ml-1" />
-                  <p className="text-gray-600 italic pl-8">"{testimonials[currentTestimonial].content}"</p>
-                </div>
-                
-                <div className="flex mt-6">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-5 h-5 ${i < testimonials[currentTestimonial].rating ? 'text-yellow-500' : 'text-gray-300'}`}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-            
-            <div className="flex justify-center mt-8 space-x-4">
-              <button
-                onClick={prevTestimonial}
-                className="bg-white hover:bg-gray-100 text-blue-600 p-2 rounded-full shadow-md"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
-              <div className="flex space-x-2">
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentTestimonial(idx)}
-                    className={`w-3 h-3 rounded-full ${idx === currentTestimonial ? 'bg-blue-600' : 'bg-gray-300'}`}
-                  />
-                ))}
-              </div>
-              
-              <button
-                onClick={nextTestimonial}
-                className="bg-white hover:bg-gray-100 text-blue-600 p-2 rounded-full shadow-md"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6 text-center relative text-gray-900"
-          >
-            Frequently Asked Questions
-            <div className="w-20 h-1 bg-green-500 mx-auto mt-3"></div>
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-gray-600 text-center mb-12"
-          >
-            Have questions? We've got answers to help you get started.
-          </motion.p>
-          
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <motion.button
-                  whileHover={{ backgroundColor: '#f3f4f6' }}
-                  className="w-full flex justify-between items-center p-4 bg-white text-left"
-                >
-                  <span className="font-medium text-gray-900">{faq.question}</span>
-                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </motion.button>
-                
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  className="overflow-hidden"
-                >
-                  <div className="p-4 bg-white border-t border-gray-200">
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </div>
-                </motion.div>
+                <div className="mb-1 text-3xl font-bold text-yellow-400 md:text-4xl">{stat.value}</div>
+                <div className="mb-1 text-lg font-medium text-white md:text-xl">{stat.label}</div>
+                <div className="text-xs text-blue-100 md:text-sm">{stat.description}</div>
               </motion.div>
             ))}
           </div>
@@ -498,39 +241,46 @@ const Home = () => {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section className="px-4 py-16 bg-gradient-to-r from-blue-600 to-blue-800 sm:px-6 lg:px-8 md:py-20">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-4 text-white"
-          >
-            Ready to Elevate Your Trading Journey?
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-xl mb-8 text-white"
-          >
-            Contact us today and take the first step towards disciplined and profitable trading.
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              to="/contact"
-              className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:scale-105 shadow-md flex items-center justify-center"
+          <div className="relative p-6 border rounded-2xl border-white/20 bg-white/10 backdrop-blur-sm md:p-10 overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute w-40 h-40 bg-yellow-400 rounded-full -top-10 -right-10 filter blur-3xl opacity-10 md:w-64 md:h-64 md:-top-20 md:-right-20"></div>
+            <div className="absolute w-40 h-40 bg-blue-400 rounded-full -bottom-10 -left-10 filter blur-3xl opacity-10 md:w-64 md:h-64 md:-bottom-20 md:-left-20"></div>
+            
+            <motion.h2 
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-3 text-2xl font-bold text-white md:text-3xl"
             >
-              Get in Touch
-            </Link>
-          </motion.div>
+              Ready to Transform Your Trading?
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mb-6 text-base text-blue-100 md:text-lg max-w-2xl mx-auto"
+            >
+              Join our community of successful traders and take control of your financial future
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+            >
+              <Link
+                to="/contact"
+                className="flex items-center justify-center px-6 py-3 text-base font-bold text-blue-600 transition-all duration-300 bg-gradient-to-r from-white to-gray-100 rounded-xl shadow-lg hover:from-gray-100 hover:to-white transform hover:scale-105 md:px-8 md:py-3.5 md:text-lg"
+              >
+                Get Started Now
+                <FaArrowRight className="ml-2 text-sm md:text-base" />
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

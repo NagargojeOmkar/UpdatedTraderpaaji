@@ -28,12 +28,28 @@ const Equity = () => {
     }
   ];
 
-  const performanceData = [
-    { stock: "RELIANCE", entry: "₹2,450", current: "₹2,850", gain: "+16.3%" },
-    { stock: "TCS", entry: "₹3,200", current: "₹3,650", gain: "+14.1%" },
-    { stock: "HDFCBANK", entry: "₹1,420", current: "₹1,680", gain: "+18.3%" },
-    { stock: "INFY", entry: "₹1,350", current: "₹1,520", gain: "+12.6%" }
+  const plans = [
+    {
+      period: '3 Months',
+      originalPrice: '₹44999',
+      discountedPrice: '₹5999',
+      discount: '60% Off'
+    },
+    {
+      period: '6 Months',
+      originalPrice: '₹29999',
+      discountedPrice: '₹9999',
+      discount: '66% Off'
+    },
+    {
+      period: '12 Months',
+      originalPrice: '₹59999',
+      discountedPrice: '₹15,999',
+      discount: '73% Off'
+    }
   ];
+
+  const purchaseLink = "https://traderpaaji.rpy.club/g/UTLGE0l2C1";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -101,63 +117,22 @@ const Equity = () => {
         </div>
       </section>
 
-      {/* Performance Section */}
+      {/* Pricing */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Portfolio Performance</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
-              <thead className="bg-blue-600 text-white">
-                <tr>
-                  <th className="py-3 px-4 text-left">Stock</th>
-                  <th className="py-3 px-4 text-left">Entry Price</th>
-                  <th className="py-3 px-4 text-left">Current Price</th>
-                  <th className="py-3 px-4 text-left">Gain/Loss</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {performanceData.map((stock, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
-                    <td className="py-3 px-4 font-medium">{stock.stock}</td>
-                    <td className="py-3 px-4">{stock.entry}</td>
-                    <td className="py-3 px-4">{stock.current}</td>
-                    <td className={`py-3 px-4 font-semibold ${stock.gain.includes('+') ? 'text-green-600' : 'text-red-600'}`}>
-                      {stock.gain}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-6 text-gray-500 text-sm text-center">
-            *Data as of July 2025. Past performance is not indicative of future results.
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Pricing Plans</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="max-w-4xl mx-auto">
             <PricingCard 
-              title="Silver Plan"
-              price="₹8,000"
-              period="month"
-              features={["2 stock recommendations", "Basic research reports", "Email updates", "Quarterly review"]}
-            />
-            <PricingCard 
-              title="Gold Plan"
-              price="₹12,000"
-              period="month"
-              features={["4 stock recommendations", "Detailed research reports", "WhatsApp support", "Monthly portfolio review"]}
-              popular={true}
-            />
-            <PricingCard 
-              title="Platinum Plan"
-              price="₹30,000"
-              period="3 months"
-              features={["All Gold features", "Save ₹6,000", "Priority access", "Personal mentor"]}
+              title="Equity Premium"
+              description="Quality swing stocks with researched entry/exit"
+              features={[
+                "Equity Cash for Swing",
+                "Well Researched",
+                "Proper Entry & Exit"
+              ]}
+              plans={plans}
+              popularIndex={1}
+              purchaseLink={purchaseLink}
             />
           </div>
         </div>
@@ -170,7 +145,10 @@ const Equity = () => {
           <p className="text-xl mb-8">
             Invest in fundamentally strong companies with our expert research guidance.
           </p>
-          <button className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.location.href = purchaseLink}
+          >
             Subscribe Now
           </button>
         </div>

@@ -28,12 +28,28 @@ const Intraday = () => {
     }
   ];
 
-  const sampleTrades = [
-    { date: "15 Jul 2025", symbol: "RELIANCE", action: "Buy", entry: "₹2,850", target: "₹2,920", exit: "₹2,918", result: "Target Hit" },
-    { date: "14 Jul 2025", symbol: "HDFCBANK", action: "Sell", entry: "₹1,650", target: "₹1,610", exit: "₹1,608", result: "Target Hit" },
-    { date: "13 Jul 2025", symbol: "INFY", action: "Buy", entry: "₹1,420", target: "₹1,450", exit: "₹1,445", result: "Partial Target" },
-    { date: "12 Jul 2025", symbol: "TATAMOTORS", action: "Sell", entry: "₹980", target: "₹950", exit: "₹985", result: "Stoploss Hit" }
+  const plans = [
+    {
+      period: '1 Month',
+      originalPrice: '₹8000',
+      discountedPrice: '₹3599',
+      discount: '55% Off'
+    },
+    {
+      period: '6 Months',
+      originalPrice: '₹45000',
+      discountedPrice: '₹9999',
+      discount: '79% Off'
+    },
+    {
+      period: '12 Months',
+      originalPrice: '₹86000',
+      discountedPrice: '₹15,000',
+      discount: '84% Off'
+    }
   ];
+
+  const purchaseLink = "https://rpy.club/g/sUONQyvysn";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,71 +109,22 @@ const Intraday = () => {
         </div>
       </section>
 
-      {/* Performance Section */}
+      {/* Pricing */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Recent Trade Performance</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
-              <thead className="bg-blue-600 text-white">
-                <tr>
-                  <th className="py-3 px-4 text-left">Date</th>
-                  <th className="py-3 px-4 text-left">Stock</th>
-                  <th className="py-3 px-4 text-left">Action</th>
-                  <th className="py-3 px-4 text-left">Entry</th>
-                  <th className="py-3 px-4 text-left">Target</th>
-                  <th className="py-3 px-4 text-left">Exit</th>
-                  <th className="py-3 px-4 text-left">Result</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {sampleTrades.map((trade, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
-                    <td className="py-3 px-4">{trade.date}</td>
-                    <td className="py-3 px-4 font-medium">{trade.symbol}</td>
-                    <td className={`py-3 px-4 ${trade.action === "Buy" ? 'text-green-600' : 'text-red-600'}`}>
-                      {trade.action}
-                    </td>
-                    <td className="py-3 px-4">{trade.entry}</td>
-                    <td className="py-3 px-4">{trade.target}</td>
-                    <td className="py-3 px-4">{trade.exit}</td>
-                    <td className={`py-3 px-4 font-semibold ${trade.result.includes('Target') ? 'text-green-600' : 'text-red-600'}`}>
-                      {trade.result}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-6 text-gray-500 text-sm text-center">
-            *Past performance is not indicative of future results. Trading involves risk of capital.
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Pricing Plans</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="max-w-4xl mx-auto">
             <PricingCard 
-              title="Basic Plan"
-              price="₹12,000"
-              period="month"
-              features={["1-2 calls daily", "Entry/Exit alerts", "Email support", "Basic reports"]}
-            />
-            <PricingCard 
-              title="Premium Plan"
-              price="₹15,000"
-              period="month"
-              features={["2-3 calls daily", "Live WhatsApp support", "Priority alerts", "Detailed analysis"]}
-              popular={true}
-            />
-            <PricingCard 
-              title="Pro Plan"
-              price="₹40,000"
-              period="3 months"
-              features={["All Premium features", "Save ₹5,000", "Personal mentor", "Advanced tools"]}
+              title="Intraday Premium"
+              description="Quality intraday calls with max 4 calls per day"
+              features={[
+                "Index Options Intraday",
+                "No Overtrading",
+                "WhatsApp & Telegram Updates"
+              ]}
+              plans={plans}
+              popularIndex={1}
+              purchaseLink={purchaseLink}
             />
           </div>
         </div>
@@ -170,7 +137,10 @@ const Intraday = () => {
           <p className="text-xl mb-8">
             Join hundreds of successful traders who have transformed their trading with our premium intraday service.
           </p>
-          <button className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-md shadow-lg transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.location.href = purchaseLink}
+          >
             Subscribe Now
           </button>
         </div>
